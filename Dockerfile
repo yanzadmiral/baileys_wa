@@ -1,22 +1,13 @@
-# Use the official Node.js image as the base image
-FROM node:lts-alpine3.19 
-# If you're using M1, M2 Mac, try this: 
-# FROM  --platform=linux/amd64 node:16.14.0-alpine
+FROM node:21-alpine3.19
 
-# Set the working directory
-WORKDIR /usr/src/app
+WORKDIR /app
 
-# Copy package.json and package-lock.json
-COPY package*.json ./
+COPY yarn.lock package.json ./
 
-# Install dependencies
-RUN npm install
+RUN yarn install
 
-# Copy the application files
 COPY . .
 
-# Expose the port
-EXPOSE 8000
+EXPOSE 3000
 
-# Start the application
-CMD [ "node", "index.js" ]
+CMD ["yarn", "dev", "--host", "0.0.0.0"]
