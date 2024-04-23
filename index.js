@@ -43,7 +43,7 @@ const qrcode = require("qrcode");
 
 app.use("/assets", express.static(__dirname + "/client/assets"));
 
-app.get("/scan", (req, res) => {
+app.get("/sc", (req, res) => {
     res.sendFile("./client/server.html", {
         root: __dirname,
     });
